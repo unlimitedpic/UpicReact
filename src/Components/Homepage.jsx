@@ -27,6 +27,8 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
+import Header from './Header';
+import Footer from './footer';
 
 
 
@@ -52,6 +54,7 @@ export class Homepage extends Component {
     render() {
         return (
             <div>
+                <Header />
                 <div class="home-banner-container-bg">
                     <div class="home-banner-image">
                         <div class="container">
@@ -63,26 +66,15 @@ export class Homepage extends Component {
                                     <div class="home-search-box">
                                         <div class="row search-box-center">
                                             <div class="col-md-3">
-                                                <div class="searchbar-media-filter">
-                                                    <div class="filter-buttons">
-                                                        <FormControl>
-                                                            <InputLabel htmlFor="age-native-simple">Age</InputLabel>
-                                                            <Select
-                                                                value={this.state.selectList}
-                                                                onChange={this.selectList}
-                                                                inputProps={{
-                                                                    name: 'age',
-                                                                    id: 'age-native-simple',
-                                                                }}
-                                                            >
-                                                                <option value="" />
-                                                                <option value={10}>Ten</option>
-                                                                <option value={20}>Twenty</option>
-                                                                <option value={30}>Thirty</option>
-                                                            </Select>
-                                                        </FormControl>
-                                                    </div>
-                                                </div>
+                                                <FormControl>
+                                                    <select class="custom-select custom-select-lg filter-buttons">
+                                                        <option selected>All images</option>
+                                                        <option value="1">Images</option>
+                                                        <option value="2">Videos</option>
+                                                        <option value="3">Icons</option>
+                                                        <option value="3">Footage</option>
+                                                    </select>
+                                                </FormControl>
                                             </div>
                                             <div class="col-md-9">
                                                 <div class="searchbar-input-field">
@@ -111,15 +103,17 @@ export class Homepage extends Component {
                     <div class="container">
                         <div class="row m-0">
                             <div class="col-md-6 col-lg-3 no-padding">
-                                <div class="category-content-box">
-                                    <div class="category-content-image-box">
-                                        <img class="category-content-image" src={vector} />
+                                <a href="/user">
+                                    <div class="category-content-box">
+                                        <div class="category-content-image-box">
+                                            <img class="category-content-image" src={vector} />
+                                        </div>
+                                        <div class="category-content-text">
+                                            <h5 class="f-w-500">Vectors</h5>
+                                            <p class="m-0">Take control with royalty-free vectors. Edit with no loss of quality</p>
+                                        </div>
                                     </div>
-                                    <div class="category-content-text">
-                                        <h5 class="f-w-500">Vectors</h5>
-                                        <p class="m-0">Take control with royalty-free vectors. Edit with no loss of quality</p>
-                                    </div>
-                                </div>
+                                </a>
                             </div>
                             <div class="col-md-6 col-lg-3 no-padding">
                                 <div class="category-content-box">
@@ -268,6 +262,7 @@ export class Homepage extends Component {
       feature film.</p>
                     </div>
                 </div>
+                <Footer />
             </div >
         )
     }

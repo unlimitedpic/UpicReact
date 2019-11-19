@@ -46,21 +46,43 @@ export class Header extends Component {
               </ul>
 
               <ul class="navbar-nav f-w-600 float-right">
-                <li class="nav-item active">
+                <li class="nav-item active" data-toggle="modal" data-target="#exampleModalCenter">
                   <a class="nav-link" href="#">Log In <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item sign-up-btn">
                   <a class="nav-link" href="#">Sign Up</a>
-                </li>               
+                </li>
               </ul>
             </div>
           </nav>
         </div >
 
+
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                ...
+               </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div >
     )
   }
 }
+
 
 export default Header
 
