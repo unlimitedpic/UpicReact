@@ -47,7 +47,7 @@ export class Header extends Component {
 
               <ul class="navbar-nav f-w-600 float-right">
                 <li class="nav-item active" data-toggle="modal" data-target="#exampleModalCenter">
-                  <a class="nav-link" href="#">Log In <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="#">Sign In <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item sign-up-btn">
                   <a class="nav-link" href="#">Sign Up</a>
@@ -62,7 +62,7 @@ export class Header extends Component {
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Sign In</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
