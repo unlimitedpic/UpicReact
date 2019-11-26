@@ -65,8 +65,8 @@ export class Homepage extends Component {
                                     </h2>
                                     <div class="home-search-box">
                                         <div class="row search-box-center">
-                                            {/* <div class="col-md-3">
-                                                <FormControl>
+                                            <div class="col-md-3">
+                                                <FormControl class="w-100">
                                                     <select class="custom-select custom-select-lg filter-buttons">
                                                         <option selected>All images</option>
                                                         <option value="1">Images</option>
@@ -82,16 +82,7 @@ export class Homepage extends Component {
                                                     <span class="searchbar-search-button"><i
                                                         class="material-icons searchbar-search-button-icon"><SearchIcon /></i></span>
                                                 </div>
-                                            </div> */}
-
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="Search this blog"></input>
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-secondary" type="button">
-                                                        <i class="fa fa-search"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
+                                            </div>                                           
 
                                         </div>
                                     </div>

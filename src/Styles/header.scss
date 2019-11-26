@@ -14,3 +14,22 @@
     background: #eee;
     border-radius: 2px;
 }
+.login-model-footer {
+    .fa{
+        padding: 8px 15px;
+        font-size: 20px;
+        min-width: 100px;
+        border-radius: 4px;
+        text-align: center;
+        text-decoration: none;
+        margin: 10px 10px;
+    }
+    .facebook-btn{
+        background: #3B5998;
+        color: white;
+    }
+    .twitter-btn{
+        background: #55ACEE;
+        color: white;
+    }
+}
