@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import SearchIcon from '@material-ui/icons/Search';
 import '../Styles/login.css';
 
 class Login extends Component {

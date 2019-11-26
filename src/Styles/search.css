@@ -37,7 +37,7 @@
     position: absolute;
     background: #fff;
     color: #000;
-    right: 15px;
+    right: 0px;
     padding: 0px 15px;
     border-left: 1px solid #d8d8d8;
   }
@@ -46,7 +46,6 @@
   }
   .searchbar-search-button .searchbar-search-button-icon {
     position: relative;
-    top: 15px;
     font-size: 38px;
     line-height: 0;
     color: #0267c8;
