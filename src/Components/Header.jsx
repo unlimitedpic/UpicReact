@@ -1,9 +1,43 @@
 import React, { Component } from 'react';
 import unlimitedpic from '../assets/img/unlimitedpic.svg';
 import '../Styles/header.scss';
+import { connect } from 'react-redux';
+import * as actions from '../redux/actions/auth';
+import { Form, Icon, Input, Button, Spin } from 'antd';
+
+const FormItem = Form.Item;
+const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
+
 
 export class Header extends Component {
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+       
+    }
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        this.props.onAuth(values.userName, values.password);
+        this.props.history.push('/');
+      }
+    });
+  }
+  
   render() {
+    let errorMessage = null;
+    if (this.props.error) {
+        errorMessage = (
+            <p>{this.props.error.message}</p>
+        );
+    }
+
+    const { getFieldDecorator } = this.props.form;
+
     return (
       <div>
         <div class="large-sscren-menu">
@@ -69,27 +103,52 @@ export class Header extends Component {
               </div>
               <div class="modal-body">
                 <form>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-                    {/* <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> */}
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" />
-                  </div>
-                  <div class="form-group form-check float-left">
-                    <input type="checkbox" class="custom-control-input" id="customControlAutosizing" />
-                    <label class="custom-control-label" for="customControlAutosizing">Remember password</label>
-                  </div>
-                  <div class="form-group form-check float-right">
-                    <label class="form-check-label" for="exampleCheck1">Fogot Password</label>
-                  </div>
+                {errorMessage}
+            {
+                this.props.loading ?
+
+                <Spin indicator={antIcon} />
+
+                :
+
+                <Form onSubmit={this.handleSubmit} className="login-form">
+
+                    <FormItem>
+                    {getFieldDecorator('userName', {
+                        rules: [{ required: true, message: 'Please input your username!' }],
+                    })(
+                    //   <label for="exampleInputEmail1">Email address</label>
+                    // <input type="user" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                        
+                        <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
+                    )}
+                    </FormItem>
+
+                    <FormItem>
+                    {getFieldDecorator('password', {
+                        rules: [{ required: true, message: 'Please input your Password!' }],
+                    })(
+                        <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
+                    )}
+                    </FormItem>
+
+                    <FormItem>
+                      <br />
+                    <button type="button" class="btn btn-primary btn-lg btn-block">Login</button>
+
+                    {/* <NavLink 
+                        style={{marginRight: '10px'}} 
+                        to='/signup/'> signup
+                    </NavLink> */}
+                    </FormItem>
+                </Form>
+            }
                 </form>
               </div>
-              <div class="modal-footer">
+
+              {/* <div class="modal-footer">
                 <button type="button" class="btn btn-primary btn-lg btn-block">Login</button>
-              </div>
+              </div> */}
 
               <div class="login-model-footer text-center">
                 <h6>with your social network</h6>
@@ -110,7 +169,23 @@ export class Header extends Component {
   }
 }
 
+const WrappedNormalLoginForm = Form.create()(Header);
 
-export default Header
+const mapStateToProps = (state) => {
+    return {
+        loading: state.loading,
+        error: state.error
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onAuth: (username, password) => dispatch(actions.authLogin(username, password)) 
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(WrappedNormalLoginForm);
+
+// export default Header
 
 
