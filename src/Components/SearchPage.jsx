@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
+import { Link } from "react-router-dom";
 import Header from './Header';
 import Footer from './footer';
 import '../Styles/search.css';
 import '../Styles/search.scss';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import icons from '../assets/img/icons.jpg';
 import SearchIcon from '@material-ui/icons/Search';
 
 export class SearchPage extends Component {
@@ -75,18 +76,18 @@ export class SearchPage extends Component {
                     <div class="container-fluid Result-list-page">
                         <div class="outerContainer">
                             <div class="containerw3 containerw3-margin">
-                                <div>
-                                    <img routerLink="/ImageInfo" class="image-file" src="{{image.ImagePath}}" />
+                                <Link to="/productinfo">  <div class="image-list-grid">
+                                    <img class="image-file" src={icons} />
                                     <div class="image-btns-right">
                                         <li class="action-buttons"><i class="fa fa-heart"></i></li>
                                         <li class="action-buttons"><i class="fa fa-share-alt"></i></li>
                                     </div>
                                     <div class="image-description-bottom">
                                         <div class="description-text">
-                                            <h5></h5>
+                                            <h6>Technology icons</h6>
                                         </div>
                                     </div>
-                                </div>
+                                </div></Link>
                             </div>
                         </div>
                     </div >

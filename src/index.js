@@ -8,6 +8,7 @@ import Homepage from './Components/Homepage';
 import { Route, Link, Switch, BrowserRouter as Router } from 'react-router-dom';
 import SearchPage from './Components/SearchPage';
 import Login from './Components/login';
+import productinfo from './Components/productinfo';
 
 const routing = (
   <Router>
@@ -16,6 +17,7 @@ const routing = (
       <Route exact path="/" component={Homepage} />
       <Route path="/search" component={SearchPage} />
       <Route path="/login" component={Login} />
+      <Route path="/productinfo" component={productinfo}/>
 
     </Switch>
     {/* </BrowserRouter> */}

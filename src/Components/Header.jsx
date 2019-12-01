@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 import unlimitedpic from '../assets/img/unlimitedpic.svg';
 import '../Styles/header.scss';
 
@@ -8,9 +9,9 @@ export class Header extends Component {
       <div>
         <div class="large-sscren-menu">
           <nav class="navbar navbar-expand-lg navbar-light bg-transperant">
-            <a class="navbar-brand" href="#">
+            <Link to="/">
               <img className="brand-logo" src={unlimitedpic} />
-            </a>
+            </Link>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>

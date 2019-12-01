@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from "react-router-dom";
 import indianimage from '../assets/img/indian-image.jpg';
 import vector from '../assets/img/vector.jpg';
 import icons from '../assets/img/icons.jpg';
@@ -82,7 +83,7 @@ export class Homepage extends Component {
                                                     <span class="searchbar-search-button"><i
                                                         class="material-icons searchbar-search-button-icon"><SearchIcon /></i></span>
                                                 </div>
-                                            </div>                                           
+                                            </div>
 
                                         </div>
                                     </div>
@@ -103,7 +104,7 @@ export class Homepage extends Component {
                     <div class="container">
                         <div class="row m-0">
                             <div class="col-md-6 col-lg-3 no-padding">
-                                <a href="/user">
+                                <Link to="/search">
                                     <div class="category-content-box">
                                         <div class="category-content-image-box">
                                             <img class="category-content-image" src={vector} />
@@ -113,7 +114,7 @@ export class Homepage extends Component {
                                             <p class="m-0">Take control with royalty-free vectors. Edit with no loss of quality</p>
                                         </div>
                                     </div>
-                                </a>
+                                </Link>
                             </div>
                             <div class="col-md-6 col-lg-3 no-padding">
                                 <div class="category-content-box">
