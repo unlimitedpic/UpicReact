@@ -83,7 +83,7 @@ export class Header extends Component {
                 <li class="nav-item active" data-toggle="modal" data-target="#exampleModalCenter">
                   <a class="nav-link" href="#">Sign In <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item sign-up-btn">
+                <li class="nav-item sign-up-btn" data-toggle="modal" data-target="#exampleModalCenterreg">
                   <a class="nav-link" href="#">Sign Up</a>
                 </li>
               </ul>
@@ -96,7 +96,7 @@ export class Header extends Component {
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Sign In</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Sign In to unlimitedpic</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -157,6 +157,54 @@ export class Header extends Component {
                 <hr></hr>
                 <div class="login-bottom-textlinkn">
                   <p>Not a member <span>REGISTER NOW</span></p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal fade" id="exampleModalCenterreg" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Sign up to Unlimitedpic</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    <label for="Username">User name</label>
+                    <input type="email" class="form-control" id="esername" aria-describedby="emailHelp" />
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                    {/* <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> */}
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" />
+                  </div>
+                  {/* <div class="form-group form-check float-left">
+                    <input type="checkbox" class="custom-control-input" id="customControlAutosizing" />
+                    <label class="custom-control-label" for="customControlAutosizing">Remember password</label>
+                  </div>                  */}
+                </form>
+              </div>
+              <div class="modal-footer model-custom-footer">
+                <button type="button" class="btn btn-primary btn-lg btn-block">Sign Up</button>
+              </div>
+
+              <div class="login-model-footer text-center">
+                <h6>with your social network</h6>
+                <a href="#" class="fa fa-facebook facebook-btn"></a>
+                <a href="#" class="fa fa-twitter twitter-btn"></a>
+                <hr></hr>
+                <div class="login-bottom-textlinkn">
+                  <p>Already have an account <span>LOG IN</span></p>
                 </div>
 
               </div>

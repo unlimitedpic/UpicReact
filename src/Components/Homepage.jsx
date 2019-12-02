@@ -37,18 +37,42 @@ export class Homepage extends Component {
         super(props);
 
         this.state = {
-            selectList: '',
+            vector: 'vector',
+            india:'india'
 
         };
-        this.selectList = this.selectList.bind(this)
+        this.vectorImage = this.vectorImage.bind(this)
+        this.indianImage = this.indianImage.bind(this)
+
     }
 
+    // selectList({currentTarget}) {    
+    //     console.log(currentTarget.value) 
+    //     // e.currentTarget.value would be equivalent
+    //   }
 
-
-    selectList(e) {
+    vectorImage(e) {
         this.setState({
-            selectList: e.target.value
+            vector: 'vector'
+        },()=>{console.log(this.state.vector)})
+
+        this.props.history.push({
+            pathname: '/search',
+            state: { vector: this.state.vector }
         })
+
+    }
+
+    indianImage(e) {
+        this.setState({
+            india: 'india'
+        },()=>{console.log(this.state.india)})
+
+        this.props.history.push({
+            pathname: '/search',
+            state: { india: this.state.india }
+        })
+
     }
 
     render() {
@@ -102,8 +126,7 @@ export class Homepage extends Component {
                 <div class="content-category-section">
                     <div class="container">
                         <div class="row m-0">
-                            <div class="col-md-6 col-lg-3 no-padding">
-                                <a href="/user">
+                            <div class="col-md-6 col-lg-3 no-padding" onClick={this.vectorImage} value="vector">
                                     <div class="category-content-box">
                                         <div class="category-content-image-box">
                                             <img class="category-content-image" src={vector} />
@@ -113,9 +136,8 @@ export class Homepage extends Component {
                                             <p class="m-0">Take control with royalty-free vectors. Edit with no loss of quality</p>
                                         </div>
                                     </div>
-                                </a>
                             </div>
-                            <div class="col-md-6 col-lg-3 no-padding">
+                            <div class="col-md-6 col-lg-3 no-padding" onClick={this.indianImage}>
                                 <div class="category-content-box">
                                     <div class="category-content-image-box">
                                         <img class="category-content-image" src={indianimage} />
