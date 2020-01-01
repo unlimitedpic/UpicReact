@@ -4,6 +4,7 @@ import '../Styles/header.scss';
 import { connect } from 'react-redux';
 import * as actions from '../redux/actions/auth';
 import { Form, Icon, Input, Button, Spin } from 'antd';
+import { Link } from 'react-router-dom';
 
 const FormItem = Form.Item;
 const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
@@ -42,9 +43,9 @@ export class Header extends Component {
       <div>
         <div class="large-sscren-menu">
           <nav class="navbar navbar-expand-lg navbar-light bg-transperant">
-            <a class="navbar-brand" href="#">
+            <Link class="navbar-brand" to="/">
               <img className="brand-logo" src={unlimitedpic} />
-            </a>
+            </Link>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -52,16 +53,16 @@ export class Header extends Component {
             <div class="collapse navbar-collapse top-ul-li-style" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto f-w-600 float-left">
                 <li class="nav-item active">
-                  <a class="nav-link" href="#">Images <span class="sr-only">(current)</span></a>
+                  <Link class="nav-link" to="/search">Images <span class="sr-only">(current)</span></Link>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Vectors</a>
+                  <Link class="nav-link" to="/search">Vectors</Link>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Icons</a>
+                  <Link class="nav-link" to="/search">Icons</Link>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Footage</a>
+                  <Link class="nav-link" to="/search">Footage</Link>
                 </li>
                 {/* <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

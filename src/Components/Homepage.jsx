@@ -29,6 +29,7 @@ import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
 import Header from './Header';
 import Footer from './footer';
+import { HomepageImages, SubCatergry } from '../Networks/Usercall'
 
 
 
@@ -38,11 +39,13 @@ export class Homepage extends Component {
 
         this.state = {
             vector: 'vector',
-            india:'india'
+            india: 'india',
+            Homepage: [],
+            Subimages: [],
+            name:''
 
         };
         this.vectorImage = this.vectorImage.bind(this)
-        this.indianImage = this.indianImage.bind(this)
 
     }
 
@@ -51,27 +54,42 @@ export class Homepage extends Component {
     //     // e.currentTarget.value would be equivalent
     //   }
 
-    vectorImage(e) {
+    vectorImage(name) {
         this.setState({
-            vector: 'vector'
-        },()=>{console.log(this.state.vector)})
+            name: name
+        }, () => { console.log(this.state.name) })
 
         this.props.history.push({
             pathname: '/search',
-            state: { vector: this.state.vector }
+            state: { name: this.state.name }
         })
 
     }
 
-    indianImage(e) {
-        this.setState({
-            india: 'india'
-        },()=>{console.log(this.state.india)})
+   
 
-        this.props.history.push({
-            pathname: '/search',
-            state: { india: this.state.india }
-        })
+
+
+    componentWillMount() {
+        HomepageImages()
+            .then(res => {
+                this.setState({
+                    Homepage: res.data
+
+                });
+                console.log(this.state.Homepage, 'data')
+
+            });
+
+        SubCatergry()
+            .then(res => {
+                this.setState({
+                    Subimages: res.data
+
+                });
+                console.log(this.state.Subimages, 'data')
+
+            });
 
     }
 
@@ -106,7 +124,7 @@ export class Homepage extends Component {
                                                     <span class="searchbar-search-button"><i
                                                         class="material-icons searchbar-search-button-icon"><SearchIcon /></i></span>
                                                 </div>
-                                            </div>                                           
+                                            </div>
 
                                         </div>
                                     </div>
@@ -126,148 +144,45 @@ export class Homepage extends Component {
                 <div class="content-category-section">
                     <div class="container">
                         <div class="row m-0">
-                            <div class="col-md-6 col-lg-3 no-padding" onClick={this.vectorImage} value="vector">
-                                    <div class="category-content-box">
-                                        <div class="category-content-image-box">
-                                            <img class="category-content-image" src={vector} />
+                            {this.state.Homepage.map(
+                                Homepage => (
+
+                                    <div class="col-md-6 col-lg-3 no-padding" value="vector">
+                                        <div class="category-content-box">
+                                            <div class="category-content-image-box">
+                                                <img class="category-content-image" src={Homepage.image} />
+                                            </div>
+                                            <div class="category-content-text">
+                                                <h5 class="f-w-500">{Homepage.name}</h5>
+                                                <p class="m-0">{Homepage.description}</p>
+                                            </div>
                                         </div>
-                                        <div class="category-content-text">
-                                            <h5 class="f-w-500">Vectors</h5>
-                                            <p class="m-0">Take control with royalty-free vectors. Edit with no loss of quality</p>
-                                        </div>
                                     </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3 no-padding" onClick={this.indianImage}>
-                                <div class="category-content-box">
-                                    <div class="category-content-image-box">
-                                        <img class="category-content-image" src={indianimage} />
-                                    </div>
-                                    <div class="category-content-text">
-                                        <h5 class="f-w-500">Indian Images</h5>
-                                        <p class="m-0">Explore thousands Indian stock images</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3 no-padding">
-                                <div class="category-content-box">
-                                    <div class="category-content-image-box">
-                                        <img class="category-content-image" src={icons} />
-                                    </div>
-                                    <div class="category-content-text">
-                                        <h5 class="f-w-500">Icons</h5>
-                                        <p class="m-0">Find icons for every project. Practical and universal</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3 no-padding">
-                                <div class="category-content-box">
-                                    <div class="category-content-image-box">
-                                        <img class="category-content-image" src={footage} />
-                                    </div>
-                                    <div class="category-content-text">
-                                        <h5 class="f-w-500">Footage</h5>
-                                        <p class="m-0">Experience HD and 4K video clips, including exclusive content</p>
-                                    </div>
-                                </div>
-                            </div>
+                                ))}
+                           
                         </div>
                     </div>
                 </div>
 
                 <div class="sub-category-section">
                     <div class="container">
-                        <h3 class="content-category-heading">Browse by categories
-    </h3>
+                        <h3 class="content-category-heading">Browse by categories</h3>
                         <div class="outerContainer">
                             <div class="containerw3 containerw3-margin">
-                                <div>
-                                    <img class="image-file" src={festival} />
-                                    <div class="image-description-bottom">
-                                        <div class="description-text">
-                                            <h5>Festival</h5>
+                                {this.state.Subimages.map(
+                                    Subimages => (
+
+                                        <div>
+                                            <img class="image-file" src={Subimages.image} />
+                                            <div class="image-description-bottom">
+                                                <div class="description-text">
+                                                    <h5>{Subimages.name}</h5>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <img class="image-file" src={shopping} />
-                                    <div class="image-description-bottom">
-                                        <div class="description-text">
-                                            <h5>Shoppng</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <img class="image-file" src={Animal} />
-                                    <div class="image-description-bottom">
-                                        <div class="description-text">
-                                            <h5>Animals</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <img class="image-file" src={Nature} />
-                                    <div class="image-description-bottom">
-                                        <div class="description-text">
-                                            <h5>Narute</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <img class="image-file" src={florals} />
-                                    <div class="image-description-bottom">
-                                        <div class="description-text">
-                                            <h5>Florals</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <img class="image-file" src={food} />
-                                    <div class="image-description-bottom">
-                                        <div class="description-text">
-                                            <h5>Food</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <img class="image-file" src={Business} />
-                                    <div class="image-description-bottom">
-                                        <div class="description-text">
-                                            <h5>Business</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <img class="image-file" src={Infogaphic} />
-                                    <div class="image-description-bottom">
-                                        <div class="description-text">
-                                            <h5>infographic</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <img class="image-file" src={Technology} />
-                                    <div class="image-description-bottom">
-                                        <div class="description-text">
-                                            <h5>Technology</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <img class="image-file" src={background} />
-                                    <div class="image-description-bottom">
-                                        <div class="description-text">
-                                            <h5>Background</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <img class="image-file" src={background} />
-                                    <div class="image-description-bottom">
-                                        <div class="description-text">
-                                            <h5>Templates</h5>
-                                        </div>
-                                    </div>
-                                </div>
+                                    ))}
+
+
                             </div>
                         </div>
                     </div>

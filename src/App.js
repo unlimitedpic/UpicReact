@@ -5,6 +5,7 @@ import { Route, Link, Switch, BrowserRouter as Router } from 'react-router-dom';
 import { connect } from 'react-redux';
 import BaseRouter from './routes';
 import * as actions from './redux/actions/auth';
+import ScrollUpButton from "react-scroll-up-button"; //Add this line Here
 
 class App extends Component {
 
@@ -17,7 +18,10 @@ class App extends Component {
       <div>
         <Router>
           {/* <CustomLayout {...this.props}> */}
+          <ScrollUpButton ContainerClassName="ScrollUpButton__Container" TransitionClassName="ScrollUpButton__Toggled">
+
               <BaseRouter />
+              </ScrollUpButton>
           {/* </CustomLayout> */}
         </Router>
       </div>

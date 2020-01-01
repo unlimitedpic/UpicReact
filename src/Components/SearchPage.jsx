@@ -18,7 +18,7 @@ export class SearchPage extends Component {
 
         };
         this.selectList = this.selectList.bind(this)
-        
+
     }
 
 
@@ -29,23 +29,19 @@ export class SearchPage extends Component {
         })
     }
 
-    componentDidMount() {
-        //to show to employee name
-       
+    // componentDidMount() {
+    //     //to show to employee name
 
-        const { vector } = this.props.location.state
-        console.log(vector, 'project data Details')
-        this.setState({
-            selectList: vector
-        })
 
-        const { india } = this.props.location.state
-        console.log(india, 'project data Details')
-        this.setState({
-            selectList: india
-        })
-console.log(this.state.selectList,'fsdfdsfd')
-    }
+    //     const { name } = this.props.location.state
+    //     console.log(name, 'project data Details')
+    //     this.setState({
+    //         selectList: name
+    //     })
+
+
+    //     console.log(this.state.selectList, 'fsdfdsfd')
+    // }
 
 
     render() {
