@@ -1,6 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
-
+// import { IndexRoute } from "react-router"
 import Homepage from './Components/Homepage';
 import SearchPage from './Components/SearchPage';
 import Login from './Components/login';
@@ -11,7 +11,10 @@ import Download from "./Components/Download";
 const BaseRouter = () => (
   <div>
        <Route exact path="/" component={Homepage} />
-      <Route path="/search" component={SearchPage} />
+         {/* <IndexRoute component={Homepage} /> */}
+      <Route path="/searchPage/:result" component={SearchPage} />
+            {/* <Route path=":search" component={SearchPage} /> */}
+        {/* </Route> */}
       <Route path="/login" component={Login} />
       <Route path="/user" component={User} />
       <Route path="/Myfavorite" component={Myfavorite} />

@@ -29,6 +29,16 @@ export class SearchPage extends Component {
         })
     }
 
+
+    componentDidMount(){
+        const { result } = this.props.match.params
+
+        console.log(result, 'result')
+    }
+
+
+
+
     // componentDidMount() {
     //     //to show to employee name
 
@@ -75,7 +85,7 @@ export class SearchPage extends Component {
                     <div class="container-fluid page-top-section">
                         <div class="row m-0">
                             <div class="col-md-10">
-                                <h3 class="search-clarification">Vintage vectors<span> (1,278,664)</span></h3>
+                                <h3 class="search-clarification">Vintage vectors<span>(1,278,664)</span></h3>
                                 <p>Related Searches: Christmas card, Wedding card, Visiting card, Invitation card, Id card</p>
                             </div>
                             <div class="col-md-2 d-flex align-items-center">

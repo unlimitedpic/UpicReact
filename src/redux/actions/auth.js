@@ -43,7 +43,7 @@ export const authLogin = (username, password) => {
         dispatch(authStart());
         axios.post('api/user/login/', {
             username: username,
-            password: password
+            password: password,
         })
         .then(res => {
             const token = res.data.key;
@@ -66,7 +66,7 @@ export const authSignup = (username, email, password1, password2) => {
             username: username,
             email: email,
             password1: password1,
-            password2: password2
+            password2: password2,
         })
         .then(res => {
             const token = res.data.key;

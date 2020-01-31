@@ -8,8 +8,7 @@ export class User extends Component {
                 <div class="page-wrapper">
                     <div class="site-wrapper">
                         <div class="main-content">
-                            {/* <div class="row m-0"> */}
-                                <div class="col-md-3 p-t-5">
+                                <div class="">
                                     <div class="card card-profile">
                                         <div class="card-avatar">
                                             <div class="picture-container">
@@ -65,11 +64,8 @@ export class User extends Component {
 
                                 </div>
 
-                                <div class="col-md-9 p-t-5">
-                                    {/* <router-outlet></router-outlet> */}
-                                </div>
+                                           
                             </div>
-                        {/* </div> */}
                     </div>
                 </div>
             </div>
