@@ -39,6 +39,11 @@ export class Header extends Component {
 
     const { getFieldDecorator } = this.props.form;
 
+   const  Images = `/searchPagetag=${'images'}`
+   const  Vectors = `/searchPagetag=${'vectors'}`
+   const  Icons = `/searchPagetag=${'icons'}`
+   const  Footage = `/searchPagetag=${'footage'}`
+
     return (
       <div>
         <div class="large-sscren-menu">
@@ -53,16 +58,16 @@ export class Header extends Component {
             <div class="collapse navbar-collapse top-ul-li-style" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto f-w-600 float-left">
                 <li class="nav-item active">
-                  <Link class="nav-link" to="/search">Images <span class="sr-only">(current)</span></Link>
+                  <Link class="nav-link" to={Images}>Images <span class="sr-only">(current)</span></Link>
                 </li>
                 <li class="nav-item">
-                  <Link class="nav-link" to="/search">Vectors</Link>
+                  <Link class="nav-link" to={Vectors}>Vectors</Link>
                 </li>
                 <li class="nav-item">
-                  <Link class="nav-link" to="/search">Icons</Link>
+                  <Link class="nav-link" to={Icons}>Icons</Link>
                 </li>
                 <li class="nav-item">
-                  <Link class="nav-link" to="/search">Footage</Link>
+                  <Link class="nav-link" to={Footage}>Footage</Link>
                 </li>
                 {/* <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

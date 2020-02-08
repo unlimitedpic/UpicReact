@@ -6,6 +6,7 @@ import Header from './Header';
 import Footer from './footer';
 import { HomepageImages, SubCatergry } from '../Networks/Usercall'
 import { Link } from 'react-router-dom';
+import SearchCompoent from './SearchCompoent';
 
 
 
@@ -109,7 +110,8 @@ export class Homepage extends Component {
                                     <h2 class="search-box-title-text">
                                         Find Free Vectors, PSD, Icons and photos
                                     </h2>
-                                    <div class="home-search-box">
+                                    <SearchCompoent />
+                                    {/* <div class="home-search-box">
                                         <div class="row search-box-center">
                                             <div class="col-md-3">
                                                 <FormControl class="w-100">
@@ -130,7 +132,7 @@ export class Homepage extends Component {
                                             </div>
 
                                         </div>
-                                    </div>
+                                    </div> */}
                                     <div class="home-banner-quick-search-list">
                                         <p><span style={{ fontWeight: '500' }}>Quick Search : </span><span>Logo, </span><span>Wedding Invitation,
                                      </span>
@@ -149,7 +151,7 @@ export class Homepage extends Component {
                         {this.state.Homepage.map(
                             Homepage => (
 
-                                <Link to={`/searchPage/${Homepage.name}`}>
+                                <Link to={`/searchPagetag=${Homepage.name}`}>
                                     <div class="row m-0">
 
                                         <div class="col-md-6 col-lg-3 no-padding">
@@ -178,7 +180,7 @@ export class Homepage extends Component {
                             <div class="containerw3 containerw3-margin">
                                 {this.state.Subimages.map(
                                     Subimages => (
-                                        <Link to={`/searchPage/${Subimages.name}`}>
+                                        <Link to={`/searchPagetag=${Subimages.name}`}>
 
                                             <div>
                                                 <img class="image-file" src={Subimages.image} />

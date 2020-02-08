@@ -12,7 +12,7 @@ const BaseRouter = () => (
   <div>
        <Route exact path="/" component={Homepage} />
          {/* <IndexRoute component={Homepage} /> */}
-      <Route path="/searchPage/:result" component={SearchPage} />
+      <Route path="/searchPage:result" component={SearchPage} />
             {/* <Route path=":search" component={SearchPage} /> */}
         {/* </Route> */}
       <Route path="/login" component={Login} />
