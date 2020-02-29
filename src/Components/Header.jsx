@@ -20,6 +20,7 @@ export class Header extends Component {
   }
 
   handleSubmit = (e) => {
+    console.log('handlesubmit')
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
@@ -87,10 +88,10 @@ export class Header extends Component {
 
               <ul class="navbar-nav f-w-600 float-right">
                 <li class="nav-item active" data-toggle="modal" data-target="#exampleModalCenter">
-                  <a class="nav-link" href="#">Sign In <span class="sr-only">(current)</span></a>
+                  <a class="nav-link">Sign In <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item sign-up-btn" data-toggle="modal" data-target="#exampleModalCenterreg">
-                  <a class="nav-link" href="#">Sign Up</a>
+                  <a class="nav-link">Sign Up</a>
                 </li>
               </ul>
             </div>
@@ -117,9 +118,9 @@ export class Header extends Component {
 
                 :
 
-                <Form onSubmit={this.handleSubmit} className="login-form">
+                <Form  onSubmit={this.handleSubmit}  className="login-form">
 
-                    <FormItem>
+                    <FormItem >
                     {getFieldDecorator('userName', {
                         rules: [{ required: true, message: 'Please input your username!' }],
                     })(
@@ -140,7 +141,7 @@ export class Header extends Component {
 
                     <FormItem>
                       <br />
-                    <button type="button" class="btn btn-primary btn-lg btn-block">Login</button>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
 
                     {/* <NavLink 
                         style={{marginRight: '10px'}} 
