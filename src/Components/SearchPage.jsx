@@ -8,6 +8,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import icons from '../assets/img/icons.jpg';
 import SearchIcon from '@material-ui/icons/Search';
+import SearchCompoent from './SearchCompoent';
+import axios from "axios";
 
 export class SearchPage extends Component {
     constructor(props) {
@@ -15,9 +17,14 @@ export class SearchPage extends Component {
 
         this.state = {
             selectList: '',
+            res:[],
+            posts:[]
 
         };
         this.selectList = this.selectList.bind(this)
+        this.fetchMonthData = this.fetchMonthData.bind(this)
+
+
     }
 
 
@@ -28,12 +35,73 @@ export class SearchPage extends Component {
         })
     }
 
+    fetchMonthData() {
+        const { result } = this.props.match.params
+        console.log(result,'result1')
+
+
+      }
+
+    componentDidMount(){
+        const { result } = this.props.match.params
+        const { result1} = this.props.match.params
+
+        // console.log(result,result1, result2, 'result2')
+        console.log(result,'result1')
+        
+       let res = result.split(',');
+    //    console.log(res.data[0],'res')
+       console.log(res,'res')
+
+       this.fetchMonthData()
+
+       const config = {
+        url: `/api/image_upload/?${result}`,
+        method: 'GET',
+        withCredentials: true,
+
+      }
+      axios(config)
+        .then((res) => {
+          this.setState({
+            posts: res.data,
+            
+  
+          }, () => { console.log() });
+          // console.log(res.data);
+          // console.log(res.data.Dates_Worked_on_weekend_days.length)
+          console.log(this.state.posts)
+  
+        });
+      
+
+
+    }
+
+
+
+
+    // componentDidMount() {
+    //     //to show to employee name
+
+
+    //     const { name } = this.props.location.state
+    //     console.log(name, 'project data Details')
+    //     this.setState({
+    //         selectList: name
+    //     })
+
+
+    //     console.log(this.state.selectList, 'fsdfdsfd')
+    // }
+
+
     render() {
         return (
             <div>
                 <Header />
                 <div class="Top-search-wrapper">
-                    <div class="col-md-8 offset-md-2">
+                    {/* <div class="col-md-8 offset-md-2">
                         <div class="search-box-center">
                             <div class="searchbar-media-filter">
                                 <div>
@@ -53,13 +121,14 @@ export class SearchPage extends Component {
                                 <span class="searchbar-search-button"><SearchIcon /></span>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
+                    <SearchCompoent />
                 </div>
                 <div class="Search-result-container">
                     <div class="container-fluid page-top-section">
                         <div class="row m-0">
                             <div class="col-md-10">
-                                <h3 class="search-clarification">Vintage vectors<span> (1,278,664)</span></h3>
+                                <h3 class="search-clarification">Vintage vectors<span>(1,278,664)</span></h3>
                                 <p>Related Searches: Christmas card, Wedding card, Visiting card, Invitation card, Id card</p>
                             </div>
                             <div class="col-md-2 d-flex align-items-center">
@@ -76,8 +145,10 @@ export class SearchPage extends Component {
                     <div class="container-fluid Result-list-page">
                         <div class="outerContainer">
                             <div class="containerw3 containerw3-margin">
-                                <Link to="/productinfo">  <div class="image-list-grid">
-                                    <img class="image-file" src={icons} />
+                            {this.state.posts.map(
+                            posts => (
+                                <div>
+                                    <img class="image-file" src={posts.image} />
                                     <div class="image-btns-right">
                                         <li class="action-buttons"><i class="fa fa-heart"></i></li>
                                         <li class="action-buttons"><i class="fa fa-share-alt"></i></li>
@@ -87,7 +158,8 @@ export class SearchPage extends Component {
                                             <h6>Technology icons</h6>
                                         </div>
                                     </div>
-                                </div></Link>
+                                </div>
+                            ))}
                             </div>
                         </div>
                     </div >

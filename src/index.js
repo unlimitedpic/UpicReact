@@ -8,24 +8,28 @@ import Homepage from './Components/Homepage';
 import { Route, Link, Switch, BrowserRouter as Router } from 'react-router-dom';
 import SearchPage from './Components/SearchPage';
 import Login from './Components/login';
-import productinfo from './Components/productinfo';
+import reducer from './redux/reducers/auth'
+import { createStore, compose, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+const composeEnhances = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-const routing = (
-  <Router>
-    {/* <BrowserRouter> */}
-    <Switch>
-      <Route exact path="/" component={Homepage} />
-      <Route path="/search" component={SearchPage} />
-      <Route path="/login" component={Login} />
-      <Route path="/productinfo" component={productinfo}/>
+const store = createStore(reducer, composeEnhances(
+    applyMiddleware(thunk)
+));
 
-    </Switch>
-    {/* </BrowserRouter> */}
-  </Router>
+
+
+const app = (
+  <Provider store={store}>
+      <App />
+  </Provider>
 )
-ReactDOM.render(routing, document.getElementById('root'))
 
+
+ReactDOM.render(app, document.getElementById('root'));
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
