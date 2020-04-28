@@ -5,7 +5,7 @@ import Homepage from './Components/Homepage';
 import SearchPage from './Components/SearchPage';
 import Login from './Components/login';
 import User from "./Components/User";
-import Myfavorite from "./Components/Myfavorite";
+import ImageModal from "./Components/ImageModal";
 import Download from "./Components/Download";
 
 const BaseRouter = () => (
@@ -13,12 +13,12 @@ const BaseRouter = () => (
        <Route exact path="/" component={Homepage} />
          {/* <IndexRoute component={Homepage} /> */}
       <Route path="/searchPage:result" component={SearchPage} />
-            {/* <Route path=":search" component={SearchPage} /> */}
+            {/* <Route path=":search" component={Myfavorite} /> */}
         {/* </Route> */}
       <Route path="/login" component={Login} />
       <Route path="/user" component={User} />
-      <Route path="/Myfavorite" component={Myfavorite} />
-      <Route path="/user_dowmlaod" component={Download} />
+      <Route path="/Myfavorite" component={ImageModal} />
+      <Route path="/user_dowmlaod:fileId" component={Download} />
 
 
 

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import Footer from './Components/footer';
 import './App.css';
-import { Route, Link, Switch, BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { connect } from 'react-redux';
 import BaseRouter from './routes';
 import * as actions from './redux/actions/auth';
