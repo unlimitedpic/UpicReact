@@ -1,0 +1,177 @@
+.page-wrapper{
+    background-color: #eee;
+}
+
+.main-content {
+    .picture-container {
+        position: relative;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    .picture {
+        width: 106px;
+        height: 106px;
+        background-color: #999999;
+        border: 4px solid #CCCCCC;
+        color: #FFFFFF;
+        border-radius: 50%;
+        margin: -5px 0px 0px -5px;
+        overflow: hidden;
+        transition: all 0.2s;
+        -webkit-transition: all 0.2s;
+
+        &:hover {
+            border-color: #2ca8ff;
+        }
+    }
+
+    .picture input[type="file"] {
+        cursor: pointer;
+        display: block;
+        height: 100%;
+        left: 0;
+        opacity: 0 !important;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+
+    .picture-src {
+        width: 100%;
+    }
+
+    padding: 30px 0px;
+
+    h6 {
+        text-transform: none;
+    }
+
+    .card-content {
+        padding: 15px 20px;
+        position: relative;
+        h3 {
+            font-weight: 500;
+        }
+
+        h6 {
+            font-size: 14px;
+            color: #000;
+            margin: 5px 0px;
+        }
+
+        h5 a {
+            color: #223c58;
+            font-weight: 400;
+            font-size: 16px;
+        }
+
+        h5 a:hover {
+            text-decoration: underline;
+        }
+    }
+
+    a {
+        cursor: pointer;
+        color: #f44336;
+    }
+
+    .card {
+        border-radius: 2px;
+        margin: 10px 0px;
+    }
+
+    .card-avatar {
+        max-width: 90px;
+        max-height: 90px;
+        margin: -28px auto 0;
+    }
+}
+
+.list i {
+    color: #ff3434;
+}
+
+.list {
+    padding: 15px 5px;
+    color: #000;
+    font-size: 16px;
+    font-weight: 400;
+    border-bottom: 1px solid #e4e4e4;
+}
+
+.active {
+    color: red;
+}
+
+.inActive {
+    color: blue;
+}
+
+.list a:hover {
+    color: #223c58;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.list:hover {
+    color: #ff3434;
+    cursor: pointer;
+}
+
+.active {
+    color: #ff3434;
+}
+
+.signout-btn {
+    font-size: 16px;
+    padding: 15px 5px;
+    font-weight: 400;
+    color: #000;
+}
+
+.signout-btn i {
+    color: #ff3434;
+}
+
+.signout-btn:hover {
+    color: #ff3434;
+}
+
+h6 {
+    text-transform: none;
+}
+
+.m-r-20 {
+    margin-right: 20px;
+}
+
+.f-18 {
+    font-size: 18px;
+}
+
+.c-r {
+    color: #ff3434;
+}
+
+// .personalized-menu {
+//     padding: 0px;
+//     background-color: #223c58;
+//     margin-bottom: 0px;
+//     .toggle-left {
+//         float: left;
+//     }
+//     .personalized-list {
+//         padding: 0px;
+//     }
+//     li a {
+//         text-transform: none;        
+//         font-size: 14px;
+//         color: #cad9ea;
+//         transition: 0.3s;
+//         font-family: roboto;
+//     }
+//     li a:hover {
+//         color: #fff;
+//     }
+// }
