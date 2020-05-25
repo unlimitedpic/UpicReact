@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 import unlimitedpic from '../assets/img/unlimitedpic.svg';
 import '../Styles/header.scss';
 import { connect } from 'react-redux';
 import * as actions from '../redux/actions/auth';
 import { Form, Icon, Input, Button, Spin } from 'antd';
-import { Link } from 'react-router-dom';
 
 const FormItem = Form.Item;
 const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
@@ -164,6 +164,53 @@ export class Header extends Component {
                 <hr></hr>
                 <div class="login-bottom-textlinkn">
                   <p>Not a member <span>REGISTER NOW</span></p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal fade" id="exampleModalCenterreg" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Sign up to Unlimitedpic</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    <label for="Username">User name</label>
+                    <input type="email" class="form-control" id="esername" aria-describedby="emailHelp" />
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" />
+                  </div>
+                  {/* <div class="form-group form-check float-left">
+                    <input type="checkbox" class="custom-control-input" id="customControlAutosizing" />
+                    <label class="custom-control-label" for="customControlAutosizing">Remember password</label>
+                  </div>                  */}
+                </form>
+              </div>
+              <div class="modal-footer model-custom-footer">
+                <button type="button" class="btn btn-primary btn-lg btn-block">Sign Up</button>
+              </div>
+
+              <div class="login-model-footer text-center">
+                <h6>with your social network</h6>
+                <a href="#" class="fa fa-facebook facebook-btn"></a>
+                <a href="#" class="fa fa-twitter twitter-btn"></a>
+                <hr></hr>
+                <div class="login-bottom-textlinkn">
+                  <p>Already have an account <span>LOG IN</span></p>
                 </div>
 
               </div>
