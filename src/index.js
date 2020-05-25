@@ -8,18 +8,6 @@ import Homepage from './Components/Homepage';
 import { Route, Link, Switch, BrowserRouter as Router } from 'react-router-dom';
 import SearchPage from './Components/SearchPage';
 import Login from './Components/login';
-<<<<<<< HEAD
-import productinfo from './Components/productinfo';
-
-const routing = (
-  <Router>
-    {/* <BrowserRouter> */}
-    <Switch>
-      <Route exact path="/" component={Homepage} />
-      <Route path="/search" component={SearchPage} />
-      <Route path="/login" component={Login} />
-      <Route path="/productinfo" component={productinfo}/>
-=======
 import reducer from './redux/reducers/auth'
 import { createStore, compose, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
@@ -29,7 +17,6 @@ const composeEnhances = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(reducer, composeEnhances(
     applyMiddleware(thunk)
 ));
->>>>>>> 2d1bf4755781b2a23fd6b22f33fcfb5b9bea9951
 
 
 

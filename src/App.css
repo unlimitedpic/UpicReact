@@ -1,5 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+body{
+  font-family: 'Roboto', sans-serif;
+}
 .App {
-  text-align: center;
+  text-align: center;  
+}
+.fw-700{
+  font-weight: 700;
 }
 
 .App-logo {
@@ -19,4 +26,44 @@
 
 .App-link {
   color: #09d3ac;
+}
+
+.About-us-title{
+  padding: 60px 0px;
+  background: #eee;
+  border-top: 1px solid #dbdbdb;
+  border-bottom: 1px solid #dbdbdb;
+}
+.About-us-text-content{
+  padding: 60px 0px;    
+}
+.About-us-text-content p{
+  font-size: 16px;
+  color: #3f3f3f;
+  font-weight: 400;
+  line-height: 28px;
+
+}
+.about-us-feature{
+  padding: 60px 0px;
+  border-top: 1px solid #eee;
+}
+.about-img img{
+  width: 100%;
+}
+.about-feature-img img{
+  width: 100%;
+}
+.about-feature-card{
+  padding: 15px;
+}
+.about-featue-text h5{
+  margin-bottom: 15px;
+  color: #3f3f3f;
+}
+.about-featue-text p{
+  font-size: 16px;
+  color: #3f3f3f;
+  font-weight: 400;
+  line-height: 28px;
 }
