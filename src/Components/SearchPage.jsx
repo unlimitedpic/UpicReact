@@ -51,7 +51,7 @@ export class SearchPage extends Component {
     this.fetchMonthData();
 
     const config = {
-      url: `/api/image_upload/?${result}`,
+      url: `http://3.21.169.125:8000/api/image_upload/?${result}`,
       method: "GET",
       withCredentials: true
     };
@@ -70,7 +70,7 @@ export class SearchPage extends Component {
 
   imageDetails() {
     const config = {
-      url: `/api/image_details/?imageId=${this.state.postData}`,
+      url: `http://3.21.169.125:8000/api/image_details/?imageId=${this.state.postData}`,
       method: "GET",
       withCredentials: true
     };

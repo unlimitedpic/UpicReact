@@ -5,7 +5,6 @@ import '../Styles/header.scss';
 import { connect } from 'react-redux';
 import * as actions from '../redux/actions/auth';
 import { Form, Icon, Input, Button, Spin } from 'antd';
-import { Link } from 'react-router-dom';
 
 const FormItem = Form.Item;
 const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
