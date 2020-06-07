@@ -148,7 +148,6 @@ export class Homepage extends Component {
 
                 <div class="content-category-section">
                     <div class="container">
- 
                         {this.state.Homepage.map(
                             Homepage => (
 

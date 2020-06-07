@@ -7,6 +7,7 @@ import Login from './Components/login';
 import User from "./Components/User";
 import ImageModal from "./Components/ImageModal";
 import Download from "./Components/Download";
+import AboutUS from "./Components/AboutUS";
 
 const BaseRouter = () => (
   <div>
@@ -19,6 +20,7 @@ const BaseRouter = () => (
       <Route path="/user" component={User} />
       <Route path="/Myfavorite" component={ImageModal} />
       <Route path="/user_dowmlaod:fileId" component={Download} />
+      <Route path="/AboutUS" component={AboutUS}/>
 
 
 
