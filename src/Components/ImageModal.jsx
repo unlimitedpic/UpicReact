@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import { Button, Modal } from "semantic-ui-react";
 import axios from "axios";
+import "../Styles/productinfo.scss";
 
 var FileDownload = require("js-file-download");
 
@@ -14,23 +16,23 @@ class ImageModal extends Component {
       posts: [],
       open: false,
       postData: "",
-      imageDetails: []
+      imageDetails: [],
     };
     this.imageFile = this.imageFile.bind(this);
   }
 
   imageFile() {
     const config = {
-      url: `/api/image_download/?imageId=${this.props.imageDetails.id}`,
+      url: `http://3.17.202.194/api/image_download/?imageId=${this.props.imageDetails.id}`,
       method: "GET",
-      withCredentials: true
+      withCredentials: true,
     };
-    axios(config).then(response => {
+    axios(config).then((response) => {
       FileDownload(response.data, "unlimited.zip");
     });
   }
 
-  show = size => () => this.setState({ size, open: true });
+  show = (size) => () => this.setState({ size, open: true });
   close = () => this.setState({ open: false });
 
   render() {
@@ -38,12 +40,17 @@ class ImageModal extends Component {
 
     return (
       <div>
-        <Modal size={size} open={this.props.open} onClose={this.close}>
+        <Modal
+          size={size}
+          open={this.props.open}
+          onClose={this.close}
+          className="image-model-style"
+        >
           <Modal.Content>
             <div className="top-image-info-section ">
               <div className="container">
                 <div className="row m-0">
-                  <div className="col-md-7 resource-media">
+                  <div className="col-md-8 resource-media">
                     <div className="resource-media-box">
                       <div className="resource-image">
                         <img src={this.props.imageDetails.image} />
@@ -69,16 +76,20 @@ class ImageModal extends Component {
                       </div>
                     </div>
                   </div>
-                  <div className="col-md-5">
+                  <div className="col-md-4">
                     <div className="resource-info">
-                      <h3>{this.props.imageDetails.image_title}</h3>
-                      <p>{this.props.imageDetails.image_description}</p>
+                      <h2>{this.props.imageDetails.image_title}</h2>
+                      {/* <p className="resource-decsription">{this.props.imageDetails.image_description}</p> */}
                       <p>Vector Id: {this.props.imageDetails.id}</p>
                     </div>
 
                     <div className="payment-option">
+                      {/* <p>
+                        <span className="f-w-500">JPG </span> (5250 px X 4017
+                        px)
+                      </p> */}
                       <p>
-                        <span className="f-w-500">JPG </span> (5250 px X 4017 px)
+                        <span className="f-w-500">.EPS format </span>
                       </p>
                     </div>
                     <div className="row m-0 download-button">
@@ -90,12 +101,20 @@ class ImageModal extends Component {
                           Free Download
                         </span>
                         <br />
-                        <span>AI, EPS JPEG</span>
+                        {/* <span>AI, EPS JPEG</span> */}
                       </button>
                       <div>
-                        <i className="material-icons favourite-btn">
+                        {/* <span class="material-icons favourite-btn">
                           favorite_border
-                        </i>
+                        </span> */}
+                        <FavoriteBorderIcon className="favourite-btn" />
+                      </div>
+                      <div className="attribution-info">
+                        <h6> UnlimitedPik License</h6>
+                        <p>
+                          Free for personal and commercial purpose with
+                          attribution.
+                        </p>
                       </div>
                     </div>
 
@@ -105,17 +124,18 @@ class ImageModal extends Component {
                         <div className="sharer-avatar" routerLink="/Portfolio">
                           <img
                             className="sharer-avatar-img"
-                            src="assets/img/florals.jpg"
+                            src="//user-images.strikinglycdn.com/res/hrscywv4p/image/upload/c_limit,fl_lossy,h_300,w_300,f_auto,q_auto/1525974/9b43cce5-aef6-4991-8033-5670a7aaf5f0_tvibcc.png"
+                            alt="s7works.io"
                           />
                           <p className="sharer-name">GraphcDzyns</p>
                         </div>
                       </div>
-                      <div className="sharer-follow-button">
+                      {/* <div className="sharer-follow-button">
                         <button mat-button className="custom-follow-btn">
                           {" "}
                           <i className="material-icons">add</i> Follow
                         </button>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>

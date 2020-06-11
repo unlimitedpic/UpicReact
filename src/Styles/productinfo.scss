@@ -1,3 +1,6 @@
+p:last-child{
+  margin-bottom: 15px !important;
+}
 .top-image-info-section {
   background-color: #eee;
   padding: 25px 0px;
@@ -46,9 +49,12 @@
   }
 
   .resource-info {
-    h3 {
-      font-weight: 500;
+    h2 {
+      font-weight: 600;
       margin-top: 0px;
+    }
+    .resource-decsription{
+      font-size: 18px;
     }
   }
 
@@ -70,11 +76,14 @@
     font-weight: 400;
 
     .btn-blue {
-      background-color: rgb(47, 95, 252);
+      background-color: #7b257d;
       color: #fff;
-      padding: 0px 26px;
+      padding: 15px 26px;
       font-weight: 600;
     }
+    
+    
+
 
     ::ng-deep .btn {
       text-transform: none;
@@ -82,11 +91,11 @@
 
 
     .favourite-btn {
-      font-size: 28px;
-      border-radius: 8px;
-      margin-left: 10px;      
+      font-size: 53px;
+      border-radius: 4px;
+      margin-left: 10px;
       background: #fff;
-      padding: 9px;
+      padding: 12px;
     }
 
     .favourite-btn:hover {
@@ -140,6 +149,11 @@
   }
 }
 
+.image-model-style{
+  width: 90%;
+  position: relative;
+  overflow: auto;
+}
 
 
 .result-similar-search {
@@ -177,4 +191,14 @@
       background: #e6e6e6;
     }
   }
+}
+
+
+.image-model-style{
+  width: 90% !important;
+  position: relative !important;
+  overflow: auto !important; 
+}
+.attribution-info{
+  margin-top: 24px;
 }
