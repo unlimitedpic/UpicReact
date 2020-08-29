@@ -36,7 +36,7 @@ export class Homepage extends Component {
   };
 
   search = (searchKey) => {
-    const url = `http://3.17.202.194/api/image_upload/?tag=${searchKey}`;
+    const url = `/api/image_upload/?tag=${searchKey}`;
     const token = {};
     this.token = token;
 

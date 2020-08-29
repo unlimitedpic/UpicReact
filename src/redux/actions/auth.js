@@ -8,10 +8,13 @@ export const authStart = () => {
     }
 }
 
-export const authSuccess = token => {
+export const authSuccess = (token,user_id) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
-        token: token
+        user_id: user_id,
+        token: token,
+
+
     }
 }
 
@@ -38,20 +41,22 @@ export const checkAuthTimeout = expirationTime => {
     }
 }
 
-export const authLogin = (username, password) => {
+export const authLogin = (email, password, props) => {
     return dispatch => {
         dispatch(authStart());
-        axios.post('http://3.17.202.194/api/user/login/', {
-            username: username,
+        axios.post('/api/signin', {
+            email: email,
             password: password,
         })
         .then(res => {
-            const token = res.data.key;
-            const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
+            const token = res.data.token;
+            // const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
             localStorage.setItem('token', token);
-            localStorage.setItem('expirationDate', expirationDate);
+            console.log(localStorage.setItem('token', token),'token login')
+            // localStorage.setItem('bull8_token', access_token);
+            // localStorage.setItem('expirationDate', expirationDate);
             dispatch(authSuccess(token));
-            dispatch(checkAuthTimeout(3600));
+            dispatch(checkAuthTimeout(360000));
         })
         .catch(err => {
             dispatch(authFail(err))
@@ -59,21 +64,29 @@ export const authLogin = (username, password) => {
     }
 }
 
-export const authSignup = (username, email, password1, password2) => {
+export const authSignup = (email, password, firstName, lastName, phoneNumber, gender, props ) => {
     return dispatch => {
         dispatch(authStart());
-        axios.post('http://3.17.202.194/rest-auth/registration/', {
-            username: username,
-            email: email,
-            password1: password1,
-            password2: password2,
+        axios.post('/api/signup', {
+            email:email,
+            password:password,
+            profile: {
+                    first_name: firstName,
+                    last_name: lastName,
+                    phone_number: phoneNumber,
+                    gender: gender
+                    }
+            // username: username,
+            // email: email,
+            // password1: password1,
+            // password2: password2,
         })
         .then(res => {
-            const token = res.data.key;
+            const user_id = res.data.key;
             const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
-            localStorage.setItem('token', token);
+            localStorage.setItem('token', user_id);
             localStorage.setItem('expirationDate', expirationDate);
-            dispatch(authSuccess(token));
+            dispatch(authSuccess(user_id));
             dispatch(checkAuthTimeout(3600));
         })
         .catch(err => {

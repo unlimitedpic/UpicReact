@@ -40,18 +40,14 @@ export class SearchPage extends Component {
 
   componentDidMount() {
     const { result } = this.props.match.params;
-    const { result1 } = this.props.match.params;
+    const { type } = this.props.match.params;
 
     // console.log(result,result1, result2, 'result2')
-    console.log(result, "result1");
-
-    let res = result.split(",");
-    console.log(res, "res");
 
     this.fetchMonthData();
 
     const config = {
-      url: `http://3.17.202.194/api/image_upload/?${result}`,
+      url: `/api/image_upload/?type=${type}&tag=${result}`,
       method: "GET",
       withCredentials: true
     };
@@ -70,7 +66,7 @@ export class SearchPage extends Component {
 
   imageDetails() {
     const config = {
-      url: `http://3.17.202.194/api/image_details/?imageId=${this.state.postData}`,
+      url: `/api/image_details/?imageId=${this.state.postData}`,
       method: "GET",
       withCredentials: true
     };
@@ -108,27 +104,6 @@ export class SearchPage extends Component {
       <div>
         <Header />
         <div className="Top-search-wrapper">
-          {/* <div className="col-md-8 offset-md-2">
-                        <div className="search-box-center">
-                            <div className="searchbar-media-filter">
-                                <div>
-                                    <FormControl>
-                                        <select className="custom-select custom-select-lg filter-buttons">
-                                            <option selected>All images</option>
-                                            <option value="1">Images</option>
-                                            <option value="2">Videos</option>
-                                            <option value="3">Icons</option>
-                                            <option value="3">Footage</option>
-                                        </select>
-                                    </FormControl>
-                                </div>
-                            </div>
-                            <div className="searchbar-input-field">
-                                <span><input type="text" className="input-style-control" placeholder="Type here to search" /></span>
-                                <span className="searchbar-search-button"><SearchIcon /></span>
-                            </div>
-                        </div>
-                    </div> */}
           <SearchCompoent />
         </div>
         <div className="Search-result-container">

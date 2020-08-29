@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
+// import { withRouter } from "react-router-dom";
+
 import { Link } from 'react-router-dom';
 import SearchIcon from '@material-ui/icons/Search';
 import FormControl from '@material-ui/core/FormControl';
-import { TypeCatergery } from '../Networks/Usercall'
+import { TypeCatergery , TypeSearch} from '../Networks/Usercall'
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+
 
 export class SearchCompoent extends Component {
     constructor(props) {
@@ -15,8 +18,10 @@ export class SearchCompoent extends Component {
             typeData: [],
             type:'',
             question:'?',
+            posts:[]
 
         };
+        this.fetchDropDownListData = this.fetchDropDownListData.bind(this); 
     };
 
 
@@ -27,6 +32,7 @@ export class SearchCompoent extends Component {
         }, () => (console.log(this.state.searchKey)));
 
         this.search(value);
+        this.fetchDropDownListData();
     };
 
     search = searchKey => {
@@ -47,8 +53,18 @@ export class SearchCompoent extends Component {
         // this.props.onChange({ [e.target.name]: e.target.value });
         this.setState({
             [e.target.name]: e.target.value
-        },() => (console.log(this.state.type, 'type')));
+        }, () => this.fetchDropDownListData, (console.log(this.state.type, 'type')));
     };
+
+    fetchDropDownListData() {
+        //  console.log("selected date is: ",this.state.selected_date)
+        TypeSearch(this.state.name)
+          .then((res) => {
+            this.setState({
+              posts: res.data,
+            });
+          });
+      }
 
 
     componentDidMount() {
@@ -68,7 +84,7 @@ export class SearchCompoent extends Component {
 
 
     render() {
-        const url = `/searchPagetag=${this.state.searchKey}`;
+        const url = `/searchPage/${this.state.searchKey}/${this.state.type}`;
         // const url = `/searchPagetype=${this.state.type},tag=${this.state.searchKey}`;
 
         return (
@@ -79,7 +95,7 @@ export class SearchCompoent extends Component {
                             <FormControl className="w-100">
                                 <select className="custom-select custom-select-lg filter-buttons"
                                 onChange={e => this.change(e)}
-                                value={this.state.name}
+                                value={this.state.type}
                                 name="type"
                                 >
                                     
@@ -102,8 +118,8 @@ export class SearchCompoent extends Component {
                         </div>
                         <div className="col-md-9">
                             <div className="searchbar-input-field">
-                                <span><input type="text" className="input-style-control" value={this.state.searchKey} placeholder="Type here to search" onChange={this.onChange} /></span>
-                                <span className="searchbar-search-button"><Link to={url}><SearchIcon /></Link></span>
+                                <span><input type="text" className="input-style-control" value={this.state.searchKey} placeholder="Type here to search" onChange={this.onChange}/></span>
+                                <span className="searchbar-search-button"><Link to={url} ><SearchIcon /></Link></span>
                             </div>
                         </div>
 

@@ -1,43 +1,79 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { connect } from 'react-redux';
-import BaseRouter from './routes';
-import * as actions from './redux/actions/auth';
-import ScrollUpButton from "react-scroll-up-button"; //Add this line Here
+import { connect } from "react-redux";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { AdminAuthRoute, UserAuthRoute, PublicRoute } from "./SimplifiedAuthRoute";
+import Homepage from './Components/Homepage';
+import SearchPage from './Components/SearchPage';
+import Download from './Components/Download';
+import AdminPage from './Components/AdminPage';
 
 class App extends Component {
 
-  componentDidMount() {
-    this.props.onTryAutoSignup();
-  }
 
   render() {
     return (
-      <div>
+      <div className="App">
+
         <Router>
-          {/* <CustomLayout {...this.props}> */}
-          <ScrollUpButton ContainerClassName="ScrollUpButton__Container" TransitionClassName="ScrollUpButton__Toggled">
+          <Switch>
+            {/* user routes */}
+            {/* <UserAuthRoute exact path='/user' component={Download} /> */}
 
-              <BaseRouter />
-              </ScrollUpButton>
-          {/* </CustomLayout> */}
+
+            {/* Admin routes */}
+            {/* <AdminAuthRoute exact path='/admin' component={Download} /> */}
+
+
+            {/* TeamLead routes */}
+
+
+
+            {/* Public routes*/}
+            <PublicRoute exact
+              path='/'
+              component={Homepage}
+            // UserAuthRoute="/frd/Employee_Dashboard/"
+            // AdminAuthRoute="/frd/approve/"
+            />
+            <PublicRoute exact
+              path='/searchPage' component={SearchPage}
+            />
+            <PublicRoute exact
+              path='/searchPage/:type' component={SearchPage}
+            />
+            <PublicRoute exact
+              path='/searchPage/:result/:type' component={SearchPage}
+            />
+            {this.props.token && (
+              <PublicRoute exact
+                path='/user' component={Download}
+              />
+
+            )}
+
+            {/* {this.props.token && ( */}
+              <PublicRoute exact
+                path='/admin' component={AdminPage}
+              />
+
+            {/* )} */}
+            {/* <PublicRoute exact
+              path='/forgotpassword/'
+              component={ForgotPassword}
+            />
+            <Route component={Page404} /> */}
+
+          </Switch>
         </Router>
-      </div>
-    );
+      </div>)
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    isAuthenticated: state.token !== null
-  }
-}
+const mapStateToProps = state => ({
+  token: state.token
+});
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onTryAutoSignup: () => dispatch(actions.authCheckState())
-  }
-}
+export default connect(mapStateToProps, null)(App);
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+// export default App;
