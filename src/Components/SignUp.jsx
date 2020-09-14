@@ -120,7 +120,7 @@ export class SignUp extends Component {
         profile: {
           first_name: firstName,
           last_name: lastName,
-          phone_number: '1234500000',
+          phone_number: '1234006780',
           gender: 'M',
           age: '10',
         }

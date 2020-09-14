@@ -102,7 +102,7 @@ export const Myupload = (token) => {
 
     const config = {
         method: 'GET',
-        url: '/api/file_type/ ',
+        url: '/api/image/',
         withCredentials: true,
         headers: { 
             accept: "application/json",

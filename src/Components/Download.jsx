@@ -8,14 +8,23 @@ import {
   ProfileDetails,
   Myfavorite,
   Myupload,
-  Mydownload
+  Mydownload,
+  SubCatergry,
+  TypeCatergery
 } from "../Networks/Usercall";
+import FormControl from "@material-ui/core/FormControl";
+import TextareaAutosize from "@material-ui/core/TextareaAutosize";
+import TextField from "@material-ui/core/TextField";
+import Grid from "@material-ui/core/Grid";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import InputLabel from "@material-ui/core/InputLabel";
+import FormHelperText from "@material-ui/core/FormHelperText";
+
 import { connect } from "react-redux";
-import Axios from "axios";
+import axios from "axios";
 
-
-
-const authToken = localStorage.getItem('token');
+const authToken = localStorage.getItem("token");
 const AuthStr = `sessionid=${authToken}`;
 
 export class Download extends Component {
@@ -28,35 +37,90 @@ export class Download extends Component {
       favorite: [],
       upload: [],
       download: [],
-      CardDetails:[],
+      CardDetails: [],
+      typeData: [],
+      Subimages: [],
+      subImage: ""
     };
     this.handleItem = this.handleItem.bind(this);
+    this.fileChangedHandler = this.fileChangedHandler.bind(this);
   }
 
   handleItem(e, { name }) {
     this.setState({ activeItem: name });
   }
 
+  change = e => {
+    // this.props.onChange({ [e.target.name]: e.target.value });
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
+  fileChangedHandler = (event) => {
+    this.setState({ file: event.target.files[0] })
+    // this.setState({ files: [this.state.files, e.target.files] })
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    //console.log(this.state.leaveRequestStatus);
+
+    const leave_request_data = new FormData();
+
+    leave_request_data.set("user", this.state.selected_option);
+    leave_request_data.set("filetype", this.state.filetype);
+    leave_request_data.append("sub_category_type", this.state.subImage);
+    leave_request_data.set("image", this.state.image);
+    leave_request_data.set("image_files", this.state.image_files);
+    leave_request_data.set("image_title", this.state.image_title);
+    leave_request_data.set("image_description", this.state.image_description);
+    leave_request_data.set("image_tags", this.state.image_tags);
+    //  formData.append('image_or_file', this.state.file, this.state.file,)
+
+    //     var leave_request_data = {
+    //    Type_of_Request: this.state.selected_option,
+    //    apply_reason: this.state.textarea_text,
+    //    leave_start_date: this.state.startDate,
+    //    leave_end_date: this.state.endDate,
+    //     image_or_file:this.state.selectedFile,
+
+    //  };
+    //  console.log("leaverequestdata", leave_request_data.requestType);
+    const config = {
+      method: "POST",
+      url: "/api/image/",
+      withCredentials: true,
+      data: leave_request_data,
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${this.props.token}`,
+        "content-type": "multipart/form-data",
+        Accept: "application/json"
+      }
+    };
+
+    axios(config).then(response => {
+      console.log(response.data);
+    });
+
+    // console.log(leave_request_data);
+  }
+
   componentDidMount() {
-    // console.log(AuthStr ,'AuthStr', this.props.token)
-    // Axios.get('/api/profile/',
-    //   {
-    //     headers: {
-    //       accept: "application/json",
-    //       Authorization: `Bearer ${this.props.token}`
-    //     }
-    //   }
-    // )
-    //   .then(res => {
+    SubCatergry().then(res => {
+      this.setState({
+        Subimages: res.data
+      });
+      console.log(this.state.Subimages, "data");
+    });
 
-    //     this.setState({
-    //       CardDetails: res.data
-    //     });
-    //     console.log("KAfls",res);
-
-    //   })
-    //   .catch(err => { })
-
+    TypeCatergery().then(res => {
+      this.setState({
+        typeData: res.data
+      });
+      console.log(this.state.typeData, "data");
+    });
 
     ProfileDetails(this.props.token).then(res => {
       this.setState({
@@ -86,7 +150,7 @@ export class Download extends Component {
   render() {
     return (
       <div>
-        <Header {...this.props}/>
+        <Header {...this.props} />
         <div class="page-wrapper">
           <div class="site-wrapper">
             <div className="main-content">
@@ -187,107 +251,32 @@ export class Download extends Component {
                             <div class="row title-block m-0">
                               <h4 class="pull-left f-w-500 m-0">My Profile</h4>
                             </div>
-                            {/* <mat-tab-group #matgroup>
-        <mat-tab>
-          <ng-template mat-tab-label> */}
-                            {/* <mat-icon class="example-tab-icon m-r-10 f-18 m-t-5">person</mat-icon> */}
-                            Basic Profile
-                            {/* </ng-template> */}
-                            <form class=" my-profile-forms">
-                              <div class="row">
-                                <div class="col-md-6 p-t-5 p-b-5 p-t-5">
-                                  {/* <mat-form-field class="w-100"> */}
-                                  <input
-                                    matInput
-                                    placeholder="Username"
-                                    name="Username"
-                                  />
-                                  {/* </mat-form-field> */}
-                                </div>
-                                <div class="col-md-6 p-b-5 p-t-5">
-                                  {/* <mat-form-field class="w-100"> */}
-                                  <input
-                                    matInput
-                                    placeholder="Email"
-                                    name="Email"
-                                  />
-                                  {/* </mat-form-field> */}
-                                </div>
-                                <div class="col-md-6 p-t-5 p-b-5 p-t-5">
-                                  {/* <mat-form-field class="w-100"> */}
-                                  <input
-                                    matInput
-                                    placeholder="Phone Number"
-                                    name="Phone Number"
-                                  />
-                                  {/* </mat-form-field> */}
-                                </div>
-                                <div class="col-md-6 p-b-5 p-t-5">
-                                  {/* <mat-form-field class="w-100"> */}
-                                  <input
-                                    matInput
-                                    placeholder="Location"
-                                    name="Location"
-                                  />
-                                  {/* </mat-form-field> */}
-                                </div>
-                              </div>
-                            </form>
                             <div>
-                              <button
-                                mat-button
-                                class="btn custom-btn-blue float-right"
-                              >
-                                Update
-                              </button>
-                              <div class="clearfix"></div>
+                              <form autoComplete="off">
+                                <TextField
+                                  id="filled-multiline-static"
+                                  style={{ width: "150px" }}
+                                  multiline
+                                  rows="1"
+                                  margin="normal"
+                                  placeholder="Enter The Title"
+                                  readOnly
+                                  onChange={e => this.change(e)}
+                                  value={this.state.image_title}
+                                />
+                              </form>
                             </div>
-                            {/* </mat-tab> */}
-                            {/* <mat-tab> */}
-                            {/* <ng-template mat-tab-label> */}
-                            {/* <mat-icon class="example-tab-icon m-r-10 f-18 m-t-5">person</mat-icon> */}
-                            Password
-                            {/* </ng-template> */}
-                            <form class="Password-tab my-profile-forms">
-                              <h4 class="change-password-title">
-                                Change Password
-                              </h4>
-                              <div class="row">
-                                <div class="col-md-6 p-t-5 p-b-5 p-t-5">
-                                  {/* <mat-form-field class="w-100"> */}
-                                  <input matInput placeholder="Old Password" />
-                                  {/* </mat-form-field> */}
-                                </div>
-                              </div>
-                              <div class="row">
-                                <div class="col-md-6 p-b-5 p-t-5">
-                                  {/* <mat-form-field class="w-100"> */}
-                                  <input matInput placeholder="New Password" />
-                                  {/* </mat-form-field> */}
-                                </div>
-                              </div>
-                              <div class="row">
-                                <div class="col-md-6 p-t-5 p-b-5 p-t-5">
-                                  {/* <mat-form-field class="w-100"> */}
-                                  <input
-                                    matInput
-                                    placeholder="Confirm New Password"
-                                  />
-                                  {/* </mat-form-field> */}
-                                </div>
-                              </div>
+                            <form autoComplete="off">
+                              <TextField
+                                id="filled-multiline-static"
+                                style={{ width: "250px" }}
+                                multiline
+                                rows="1"
+                                margin="normal"
+                                readOnly
+                                value={'Jalagari Sai Kiran'}
+                              />
                             </form>
-                            <div>
-                              <button
-                                mat-button
-                                class="btn custom-btn-blue float-right"
-                              >
-                                Update
-                              </button>
-                              <div class="clearfix"></div>
-                            </div>
-                            {/* </mat-tab> */}
-                            {/* </mat-tab-group> */}
                           </div>
                         </div>
                       </div>
@@ -305,99 +294,145 @@ export class Download extends Component {
                               <h4 class="pull-left f-w-500 m-0">My Uploads</h4>
                             </div>
 
-                            {/* <mat-tab-group #matgroup>
-        <mat-tab>
-          <ng-template mat-tab-label>
-            <mat-icon class="example-tab-icon m-r-10 f-18 m-t-5">person</mat-icon>
-            Uppload Overview
-          </ng-template> */}
-                            <form class=" my-profile-forms">
-                              <div class="row">
-                                <div class="col-md-6 p-t-5 p-b-5 p-t-5">
-                                  {/* <mat-form-field class="w-100"> */}
-                                  <input
-                                    matInput
-                                    placeholder="Username"
-                                    name="Username"
-                                  />
-                                  {/* </mat-form-field> */}
-                                </div>
-                                <div class="col-md-6 p-b-5 p-t-5">
-                                  {/* <mat-form-field class="w-100"> */}
-                                  <input
-                                    matInput
-                                    placeholder="Email"
-                                    name="Email"
-                                  />
-                                  {/* </mat-form-field> */}
-                                </div>
-                                <div class="col-md-6 p-t-5 p-b-5 p-t-5">
-                                  {/* <mat-form-field class="w-100"> */}
-                                  <input
-                                    matInput
-                                    placeholder="Phone Number"
-                                    name="Phone Number"
-                                  />
-                                  {/* </mat-form-field> */}
-                                </div>
-                                <div class="col-md-6 p-b-5 p-t-5">
-                                  {/* <mat-form-field class="w-100"> */}
-                                  <input
-                                    matInput
-                                    placeholder="Location"
-                                    name="Location"
-                                  />
-                                  {/* </mat-form-field> */}
-                                </div>
-                              </div>
-                            </form>
-                            <div>
-                              <button
-                                mat-button
-                                class="btn custom-btn-blue float-right"
-                              >
-                                Update
-                              </button>
-                              <div class="clearfix"></div>
-                            </div>
-                            {/* </mat-tab> */}
+                            <Grid xs={12} md={12} lg={12} spacing={3}>
+                              <FormControl style={{ width: "100%" }}>
+                                {/* <FormHelperText>Select Project</FormHelperText> */}
+                                <InputLabel htmlFor="select-multiple">
+                                  Select the file type
+                                </InputLabel>
 
-                            {/* <mat-tab>
-          <ng-template mat-tab-label>
-            <mat-icon class="example-tab-icon m-r-10 f-18 m-t-5">person</mat-icon>
-            Upload Content
-          </ng-template> */}
-                            <form class="Password-tab my-profile-forms">
-                              <h4 class="change-password-title">
-                                Change Password
-                              </h4>
-                              <div class="row">
-                                <div class="col-md-6 p-t-5 p-b-5 p-t-5">
-                                  <input matInput placeholder="Old Password" />
-                                </div>
-                              </div>
-                              <div class="row">
-                                <div class="col-md-6 p-b-5 p-t-5">
-                                  <input matInput placeholder="New Password" />
-                                </div>
-                              </div>
-                              <div class="row">
-                                <div class="col-md-6 p-t-5 p-b-5 p-t-5">
-                                  <input
-                                    matInput
-                                    placeholder="Confirm New Password"
-                                  />
-                                </div>
-                              </div>
+                                <Select
+                                  multiple
+                                  value={this.state.filetype}
+                                  onChange={e => this.change(e)}
+                                  name="filetype"
+                                >
+                                  {this.state.typeData.map(typeData => (
+                                    <MenuItem
+                                      key={typeData.name}
+                                      value={typeData.name}
+                                    >
+                                      {typeData.name} {typeData.name}
+                                    </MenuItem>
+                                  ))}
+                                </Select>
+                                <FormHelperText></FormHelperText>
+                              </FormControl>
+                            </Grid>
+
+                            {/* <div className="col-md-3">
+                              <FormControl className="w-100">
+                                <select
+                                  className="custom-select custom-select-lg filter-buttons"
+                                  onChange={e => this.change(e)}
+                                  value={this.state.type}
+                                  name="type"
+                                >
+                                  <option selected>All images</option>
+                                  {this.state.typeData.map(typeData => (
+                                    <option
+                                      key={typeData.name}
+                                      value={typeData.name}
+                                    >
+                                      {typeData.name}
+                                    </option>
+                                  ))}
+                                </select>
+                              </FormControl>
+                            </div> */}
+                            <Grid xs={12} md={12} lg={12} spacing={3}>
+                              <FormControl style={{ width: "100%" }}>
+                                {/* <FormHelperText>Select Project</FormHelperText> */}
+                                <InputLabel htmlFor="select-multiple">
+                                  Select User to this Project
+                                </InputLabel>
+
+                                <Select
+                                  multiple
+                                  value={this.state.subImage}
+                                  onChange={e => this.change(e)}
+                                  name="subImage"
+                                >
+                                  {this.state.Subimages.map(Subimages => (
+                                    <MenuItem
+                                      key={Subimages.name}
+                                      value={Subimages.name}
+                                    >
+                                      {Subimages.name} {Subimages.name}
+                                    </MenuItem>
+                                  ))}
+                                </Select>
+                                <FormHelperText></FormHelperText>
+                              </FormControl>
+                            </Grid>
+                            {/* <div className="col-md-3">
+                              <FormControl className="w-100">
+                                <select
+                                  className="custom-select custom-select-lg filter-buttons"
+                                  onChange={e => this.change(e)}
+                                  value={this.state.subImage}
+                                  name="subImage"
+                                >
+                                  <option selected>All images</option>
+                                  {this.state.Subimages.map(Subimages => (
+                                    <option
+                                      key={Subimages.name}
+                                      value={Subimages.name}
+                                    >
+                                      {Subimages.name}
+                                    </option>
+                                  ))}
+                                </select>
+                              </FormControl>
+                            </div> */}
+
+                            <div>
+                              <form autoComplete="off">
+                                <TextField
+                                  id="filled-multiline-static"
+                                  style={{ width: "150px" }}
+                                  multiline
+                                  rows="1"
+                                  margin="normal"
+                                  placeholder="Enter The Title"
+                                  onChange={e => this.change(e)}
+                                  value={this.state.image_title}
+                                />
+                              </form>
+                            </div>
+                            <form autoComplete="off">
+                              <TextField
+                                id="filled-multiline-static"
+                                style={{ width: "250px" }}
+                                multiline
+                                rows="1"
+                                margin="normal"
+                                placeholder="Enter The Tags"
+                                onChange={e => this.change(e)}
+                                value={this.state.image_tags}
+                              />
+                            </form>
+                            <form autoComplete="off">
+                              <TextField
+                                rowsMax={4}
+                                placeholder="Enter The Descrition"
+                                margin="normal"
+                                style={{ width: "250px" }}
+                                multiline
+                                rows="5"
+                                onChange={e => this.change(e)}
+                                value={this.state.image_description}
+                              />
                             </form>
                             <div>
-                              <button
-                                mat-button
-                                class="btn custom-btn-blue float-right"
-                              >
-                                Update
-                              </button>
-                              <div class="clearfix"></div>
+                              <h6>Upload File</h6>
+                              <input
+                                type="file"
+                                multiple
+                                onChange={this.fileChangedHandler}
+                                aria-describedby="fileHelp"
+                              />
+                              {/* <button onClick={this.fileUploadHandler}> Upload</button> */}
                             </div>
                           </div>
                         </div>
