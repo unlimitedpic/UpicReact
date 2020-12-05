@@ -2,19 +2,18 @@ import * as actionTypes from './actionTypes'
 import axios from 'axios';
 
 
-export const authStart = () => {
+export const authStart = (isAdmin) => {
     return {
-        type: actionTypes.AUTH_START
+        type: actionTypes.AUTH_START,
+        isAdmin:isAdmin,
     }
 }
 
-export const authSuccess = (token,user_id) => {
+export const authSuccess = (token,user_id ) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
         user_id: user_id,
         token: token,
-
-
     }
 }
 
@@ -50,12 +49,14 @@ export const authLogin = (email, password, props) => {
         })
         .then(res => {
             const token = res.data.token;
+            const isAdmin = res.data.isAdmin
             // const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
             localStorage.setItem('token', token);
             console.log(localStorage.setItem('token', token),'token login')
             // localStorage.setItem('bull8_token', access_token);
             // localStorage.setItem('expirationDate', expirationDate);
             dispatch(authSuccess(token));
+            dispatch(authStart(isAdmin));
             dispatch(checkAuthTimeout(360000));
         })
         .catch(err => {

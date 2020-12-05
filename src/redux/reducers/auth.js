@@ -5,13 +5,15 @@ const initialState = {
     token: null,
     error: null, 
     loading: false,
-    user_id:null,
+    isAdmin:null,
 }
 
 const authStart = (state, action) => {
     return updateObject(state, {
         error: null,
-        loading: true
+        loading: true,
+        isAdmin:action.isAdmin, 
+        
     });
 }
 
@@ -20,7 +22,6 @@ const authSuccess = (state, action) => {
         token: action.token,
         error: null,
         loading: false,
-        user_id:action.user_id,
         user_status:action.user_status,
     });
 }

@@ -128,6 +128,21 @@ export const Mydownload = (token) => {
 
 }
 
+export const AdminHistory = (token) => {
+
+    const config = {
+        method: 'GET',
+        url: '/api/image_history/',
+        headers: { 
+            accept: "application/json",
+            Authorization: `Bearer ${token}`
+        },
+        withCredentials: true,
+    }
+    return axios(config)
+
+}
+
 
 // export const Search_Data = (selected_Date) => {
  

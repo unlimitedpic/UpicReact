@@ -117,14 +117,16 @@ export class Download extends Component {
 
     TypeCatergery().then(res => {
       this.setState({
-        typeData: res.data
+        typeData: res.CardDetailsdata
       });
       console.log(this.state.typeData, "data");
     });
 
     ProfileDetails(this.props.token).then(res => {
       this.setState({
-        details: res.data
+        details: res.data.data[0]
+      },()=>{
+        console.log(this.state.details, "data", res.data.data[0]);
       });
     });
 
@@ -261,8 +263,7 @@ export class Download extends Component {
                                   margin="normal"
                                   placeholder="Enter The Title"
                                   readOnly
-                                  onChange={e => this.change(e)}
-                                  value={this.state.image_title}
+                                  value={this.state.details.email}
                                 />
                               </form>
                             </div>
@@ -274,7 +275,18 @@ export class Download extends Component {
                                 rows="1"
                                 margin="normal"
                                 readOnly
-                                value={'Jalagari Sai Kiran'}
+                                value={this.state.details.first_name}
+                              />
+                            </form>
+                            <form autoComplete="off">
+                              <TextField
+                                id="filled-multiline-static"
+                                style={{ width: "250px" }}
+                                multiline
+                                rows="1"
+                                margin="normal"
+                                readOnly
+                                value={this.state.details.last_name}
                               />
                             </form>
                           </div>
@@ -301,7 +313,7 @@ export class Download extends Component {
                                   Select the file type
                                 </InputLabel>
 
-                                <Select
+                                {/* <Select
                                   multiple
                                   value={this.state.filetype}
                                   onChange={e => this.change(e)}
@@ -315,7 +327,7 @@ export class Download extends Component {
                                       {typeData.name} {typeData.name}
                                     </MenuItem>
                                   ))}
-                                </Select>
+                                </Select> */}
                                 <FormHelperText></FormHelperText>
                               </FormControl>
                             </Grid>
@@ -347,7 +359,7 @@ export class Download extends Component {
                                   Select User to this Project
                                 </InputLabel>
 
-                                <Select
+                                {/* <Select
                                   multiple
                                   value={this.state.subImage}
                                   onChange={e => this.change(e)}
@@ -361,7 +373,7 @@ export class Download extends Component {
                                       {Subimages.name} {Subimages.name}
                                     </MenuItem>
                                   ))}
-                                </Select>
+                                </Select> */}
                                 <FormHelperText></FormHelperText>
                               </FormControl>
                             </Grid>
@@ -432,7 +444,7 @@ export class Download extends Component {
                                 onChange={this.fileChangedHandler}
                                 aria-describedby="fileHelp"
                               />
-                              {/* <button onClick={this.fileUploadHandler}> Upload</button> */}
+                              <button onClick={this.fileUploadHandler}> Upload</button>
                             </div>
                           </div>
                         </div>
