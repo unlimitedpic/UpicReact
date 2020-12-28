@@ -225,7 +225,7 @@ export class Download extends Component {
                                   Downloads
                                 </div>
                               </Menu.Item>
-                              <Menu.Item
+                              {/* <Menu.Item
                                 routerLink="uploads"
                                 name="uploads"
                                 onClick={this.handleItem}
@@ -236,7 +236,7 @@ export class Download extends Component {
                                   <i className="fa fa-building m-r-20"></i>My
                                   Uploads
                                 </div>
-                              </Menu.Item>
+                              </Menu.Item> */}
                             </div>
                           </div>
                         </div>
